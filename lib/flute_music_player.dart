@@ -131,16 +131,57 @@ class Song {
   String uri;
   String albumArt;
 
-  Song(this.id, this.artist, this.title, this.album, this.albumId,
-      this.duration, this.uri, this.albumArt);
-  Song.fromMap(Map m) {
-    id = m["id"];
-    artist = m["artist"];
-    title = m["title"];
-    album = m["album"];
-    albumId = m["albumId"];
-    duration = m["duration"];
-    uri = m["uri"];
-    albumArt = m["albumArt"];
+  int isFav=0;
+  int timestamp=0;
+  int count=0;
+
+  Song(
+    id,
+    artist,
+    title,
+    album,
+    albumId,
+    duration,
+    uri,
+    albumArt,
+    {
+      isFav=0,
+      timestamp=0,
+      count=0
+    });
+
+    Song.fromMap(Map m) {
+      id = m["id"];
+      artist = m["artist"];
+      title = m["title"];
+      album = m["album"];
+      albumId = m["albumId"];
+      duration = m["duration"];
+      uri = m["uri"];
+      albumArt = m["albumArt"];
+      isFav=m["isFav"];
+      timestamp=m["timestamp"];
+      count=m["count"];
+    }
+    static final List<String> Columns=["id","artist", "title", "album", "albumId", "duration", "uri", "albumArt","isFav","timestamp"];
+
+    Map toMap(){
+      Map<String,dynamic> map={
+        "id":id,
+        "artist":artist,
+        "title":title,
+        "album":album,
+        "albumId":albumId,
+        "duration":duration,
+        "uri":uri,
+        "albumArt":albumArt,
+        "isFav":isFav,
+        "timestamp":timestamp,
+        "count":count,
+      };
+    return map;
+  }
+  void set time(int value){
+    this.timestamp = value;
   }
 }
